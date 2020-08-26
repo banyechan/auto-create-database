@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.banyechan.autocreatedatabase.mapper.AlarmMapper">
+    <resultMap id="BaseResultMap" type="com.banyechan.autocreatedatabase.entity.Alarm">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="alarm_from_id" jdbcType="INTEGER" property="alarmFromId"/>
+        <result column="alarm_type_id" jdbcType="INTEGER" property="alarmTypeId"/>
+        <result column="alarm_severity" jdbcType="INTEGER" property="alarmSeverity"/>
+        <result column="alarm_type_name" jdbcType="VARCHAR" property="alarmTypeName"/>
+        <result column="alarm_category" jdbcType="INTEGER" property="alarmCategory"/>
+        <result column="obj_id" jdbcType="INTEGER" property="objId"/>
+        <result column="obj_name" jdbcType="VARCHAR" property="objName"/>
+        <result column="obj_type_id" jdbcType="INTEGER" property="objTypeId"/>
+        <result column="equipment_id" jdbcType="INTEGER" property="equipmentId"/>
+        <result column="equipment_sn" jdbcType="VARCHAR" property="equipmentSn"/>
+        <result column="equipment_name" jdbcType="VARCHAR" property="equipmentName"/>
+        <result column="acked" jdbcType="BIT" property="acked"/>
+        <result column="ack_user" jdbcType="VARCHAR" property="ackUser"/>
+        <result column="ack_time" jdbcType="TIMESTAMP" property="ackTime"/>
+        <result column="ack_result" jdbcType="INTEGER" property="ackResult"/>
+        <result column="ack_desc" jdbcType="VARCHAR" property="ackDesc"/>
+        <result column="alarm_source" jdbcType="VARCHAR" property="alarmSource"/>
+        <result column="longitude" jdbcType="DOUBLE" property="longitude"/>
+        <result column="latitude" jdbcType="DOUBLE" property="latitude"/>
+        <result column="cleared" jdbcType="BIT" property="cleared"/>
+        <result column="clear_user" jdbcType="VARCHAR" property="clearUser"/>
+        <result column="cleared_time" jdbcType="TIMESTAMP" property="clearedTime"/>
+        <result column="alarm_datetime" jdbcType="TIMESTAMP" property="alarmDatetime"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, alarm_from_id, alarm_type_id, alarm_severity, alarm_type_name, alarm_category, obj_id,
+	obj_name, obj_type_id, equipment_id, equipment_sn, equipment_name, acked, ack_user, ack_time,
+	ack_result, ack_desc, alarm_source, longitude, latitude, cleared, clear_user, cleared_time,
+	alarm_datetime, description
+  </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from alarm
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from alarm
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insertSelective" parameterType="com.banyechan.autocreatedatabase.entity.Alarm"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into alarm
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="alarmFromId != null">
+                alarm_from_id,
+            </if>
+            <if test="alarmTypeId != null">
+                alarm_type_id,
+            </if>
+            <if test="alarmSeverity != null">
+                alarm_severity,
+            </if>
+            <if test="alarmTypeName != null">
+                alarm_type_name,
+            </if>
+            <if test="alarmCategory != null">
+                alarm_category,
+            </if>
+            <if test="objId != null">
+                obj_id,
+            </if>
+            <if test="objName != null">
+                obj_name,
+            </if>
+            <if test="objTypeId != null">
+                obj_type_id,
+            </if>
+            <if test="equipmentId != null">
+                equipment_id,
+            </if>
+            <if test="equipmentSn != null">
+                equipment_sn,
+            </if>
+            <if test="equipmentName != null">
+                equipment_name,
+            </if>
+            <if test="acked != null">
+                acked,
+            </if>
+            <if test="ackUser != null">
+                ack_user,
+            </if>
+            <if test="ackTime != null">
+                ack_time,
+            </if>
+            <if test="ackResult != null">
+                ack_result,
+            </if>
+            <if test="ackDesc != null">
+                ack_desc,
+            </if>
+            <if test="alarmSource != null">
+                alarm_source,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="cleared != null">
+                cleared,
+            </if>
+            <if test="clearUser != null">
+                clear_user,
+            </if>
+            <if test="clearedTime != null">
+                cleared_time,
+            </if>
+            <if test="alarmDatetime != null">
+                alarm_datetime,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="alarmFromId != null">
+                #{alarmFromId,jdbcType=INTEGER},
+            </if>
+            <if test="alarmTypeId != null">
+                #{alarmTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="alarmSeverity != null">
+                #{alarmSeverity,jdbcType=INTEGER},
+            </if>
+            <if test="alarmTypeName != null">
+                #{alarmTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="alarmCategory != null">
+                #{alarmCategory,jdbcType=INTEGER},
+            </if>
+            <if test="objId != null">
+                #{objId,jdbcType=INTEGER},
+            </if>
+            <if test="objName != null">
+                #{objName,jdbcType=VARCHAR},
+            </if>
+            <if test="objTypeId != null">
+                #{objTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="equipmentId != null">
+                #{equipmentId,jdbcType=INTEGER},
+            </if>
+            <if test="equipmentSn != null">
+                #{equipmentSn,jdbcType=VARCHAR},
+            </if>
+            <if test="equipmentName != null">
+                #{equipmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="acked != null">
+                #{acked,jdbcType=BIT},
+            </if>
+            <if test="ackUser != null">
+                #{ackUser,jdbcType=VARCHAR},
+            </if>
+            <if test="ackTime != null">
+                #{ackTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ackResult != null">
+                #{ackResult,jdbcType=INTEGER},
+            </if>
+            <if test="ackDesc != null">
+                #{ackDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="alarmSource != null">
+                #{alarmSource,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=DOUBLE},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=DOUBLE},
+            </if>
+            <if test="cleared != null">
+                #{cleared,jdbcType=BIT},
+            </if>
+            <if test="clearUser != null">
+                #{clearUser,jdbcType=VARCHAR},
+            </if>
+            <if test="clearedTime != null">
+                #{clearedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="alarmDatetime != null">
+                #{alarmDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.banyechan.autocreatedatabase.entity.Alarm">
+        update alarm
+        <set>
+            <if test="alarmFromId != null">
+                alarm_from_id = #{alarmFromId,jdbcType=INTEGER},
+            </if>
+            <if test="alarmTypeId != null">
+                alarm_type_id = #{alarmTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="alarmSeverity != null">
+                alarm_severity = #{alarmSeverity,jdbcType=INTEGER},
+            </if>
+            <if test="alarmTypeName != null">
+                alarm_type_name = #{alarmTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="alarmCategory != null">
+                alarm_category = #{alarmCategory,jdbcType=INTEGER},
+            </if>
+            <if test="objId != null">
+                obj_id = #{objId,jdbcType=INTEGER},
+            </if>
+            <if test="objName != null">
+                obj_name = #{objName,jdbcType=VARCHAR},
+            </if>
+            <if test="objTypeId != null">
+                obj_type_id = #{objTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="equipmentId != null">
+                equipment_id = #{equipmentId,jdbcType=INTEGER},
+            </if>
+            <if test="equipmentSn != null">
+                equipment_sn = #{equipmentSn,jdbcType=VARCHAR},
+            </if>
+            <if test="equipmentName != null">
+                equipment_name = #{equipmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="acked != null">
+                acked = #{acked,jdbcType=BIT},
+            </if>
+            <if test="ackUser != null">
+                ack_user = #{ackUser,jdbcType=VARCHAR},
+            </if>
+            <if test="ackTime != null">
+                ack_time = #{ackTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ackResult != null">
+                ack_result = #{ackResult,jdbcType=INTEGER},
+            </if>
+            <if test="ackDesc != null">
+                ack_desc = #{ackDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="alarmSource != null">
+                alarm_source = #{alarmSource,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude,jdbcType=DOUBLE},
+            </if>
+            <if test="latitude != null">
+                latitude = #{latitude,jdbcType=DOUBLE},
+            </if>
+            <if test="cleared != null">
+                cleared = #{cleared,jdbcType=BIT},
+            </if>
+            <if test="clearUser != null">
+                clear_user = #{clearUser,jdbcType=VARCHAR},
+            </if>
+            <if test="clearedTime != null">
+                cleared_time = #{clearedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="alarmDatetime != null">
+                alarm_datetime = #{alarmDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="listByCondition" resultMap="BaseResultMap">
+        select a.id, a.alarm_from_id, a.alarm_type_id, a.alarm_severity, a.alarm_type_name, a.obj_id, a.obj_name,
+        a.obj_type_id,
+        a.equipment_id, a.equipment_sn, a.equipment_name, a.acked, a.ack_user, a.ack_time, a.ack_result,
+        a.ack_desc, a.alarm_source, a.longitude, a.latitude, a.cleared, a.clear_user, a.cleared_time,
+        a.alarm_datetime, a.description, a.alarm_category
+        from alarm a
+        left join equipment e on e.id = a.equipment_id
+        <where>
+            <if test="id != null and id gt 0">
+                a.id = #{id}
+            </if>
+            <if test="alarmFromId != null">
+                a.alarm_from_id = #{alarmFromId}
+            </if>
+            <if test="alarmTypeId != null">
+                and a.alarm_type_id = #{alarmTypeId}
+            </if>
+            <if test="alarmSeverity != null">
+                and a.alarm_severity = #{alarmSeverity}
+            </if>
+            <if test="alarmTypeName != null">
+                and a.alarm_type_name = #{alarmTypeName}
+            </if>
+            <if test="alarmCategory != null">
+                and a.alarm_category = #{alarmCategory}
+            </if>
+            <if test="objId != null">
+                and a.obj_id = #{objId}
+            </if>
+            <if test="objName != null">
+                and a.obj_name = #{objName}
+            </if>
+            <if test="objTypeId != null">
+                and a.obj_type_id = #{objTypeId}
+            </if>
+            <if test="equipmentId != null">
+                and a.equipment_id = #{equipmentId}
+            </if>
+            <if test="equipmentSn != null and equipmentSn.trim() != ''">
+                and a.equipment_sn like concat('%', #{equipmentSn}, '%')
+            </if>
+            <if test="equipmentName != null and equipmentName.trim() != ''">
+                and a.equipment_name like concat('%', #{equipmentName}, '%')
+            </if>
+            <if test="acked != null">
+                and a.acked = #{acked}
+            </if>
+            <if test="ackUser != null">
+                and a.ack_user = #{ackUser}
+            </if>
+            <if test="ackTime != null">
+                and a.ack_time = #{ackTime}
+            </if>
+            <if test="ackResult != null">
+                and a.ack_result = #{ackResult}
+            </if>
+            <if test="ackDesc != null">
+                and a.ack_desc = #{ackDesc}
+            </if>
+            <if test="alarmSource != null">
+                and a.alarm_source = #{alarmSource}
+            </if>
+            <if test="longitude != null">
+                and a.longitude = #{longitude}
+            </if>
+            <if test="latitude != null">
+                and a.latitude = #{latitude}
+            </if>
+            <if test="cleared != null">
+                and a.cleared = #{cleared}
+            </if>
+            <if test="clearUser != null">
+                and a.clear_user = #{clearUser}
+            </if>
+            <if test="clearedTime != null">
+                and a.cleared_time = #{clearedTime}
+            </if>
+            <if test="alarmDatetime != null">
+                and a.alarm_datetime = #{alarmDatetime}
+            </if>
+            <if test="description != null">
+                and a.description = #{description}
+            </if>
+        </where>
+        order by a.alarm_datetime desc
+    </select>
+
+
+    <select id="listByAreaIdAndZoneId" resultMap="BaseResultMap">
+    select a.id, a.equipment_id,  a.equipment_sn, a.equipment_name, a.date, a.type, a.description, a.cleared, a.clear_user,
+    a.cleared_time, a.status
+    from alarm a
+    left join equipment e on e.id = a.equipment_id
+    where e.area_id = #{areaId}
+    and e.zone_id = #{zoneId}
+    order by a.type desc
+  </select>
+
+
+    <select id="listByAreaId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select a.id, a.equipment_id,  a.equipment_sn, a.equipment_name, a.date, a.type, a.description,
+    a.cleared, a.clear_user, a.cleared_time, a.status
+    from alarm a
+    left join equipment e on e.id = a.equipment_id
+    where e.area_id = #{areaId}
+    and a.cleared = 0
+    order by a.type desc
+  </select>
+
+    <select id="listByAcked" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from alarm
+        where acked = 0
+    </select>
+
+    <select id="getNoAckedNum" resultType="java.lang.Integer">
+    select count(1)
+    from alarm
+    where acked = 0
+  </select>
+
+    <select id="getAlarmCountAfterDate" resultType="java.lang.Integer">
+        select count(1)
+        from alarm
+        <where>
+            <if test="cleared != null">
+                and cleared = cleared
+            </if>
+            <if test="acked != null">
+                and acked = acked
+            </if>
+            <if test="startDate != null">
+                and alarm_datetime > #{startDate}
+            </if>
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,52 @@
+server:
+  port: 6060
+  undertow:
+    io-threads: 32
+    worker-threads: 256
+
+spring:
+  application:
+    name: maxware
+  # dev环境
+  profiles:
+    active: dev
+    #mybatis数据源
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/supermarket?characterEncoding=utf8&useSSL=false
+    platform: mysql
+    #启动时需要初始化的建表语句
+    schema:
+      - classpath:schema-mysql.sql
+      #- classpath:schema-update.sql
+    #初始化的数据
+    data: classpath:data-mysql.sql
+    initialization-mode: always
+    sql-script-encoding: utf-8
+    separator: ;
+    #mysql-url: jdbc:mysql://127.0.0.1:3306/mysql?characterEncoding=utf8&useSSL=false
+#  jpa:
+#    database: MySQL
+#    show-sql: true
+#    generate-ddl: true
+#    hibernate:
+#      ddl-auto: update
+
+
+
+
+#mybaits配置，修改主键类型，mapper.xml、type 别名等
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.banyechan.autocreatedatabase.entity
+
+
+#sql语句打印
+logging:
+  level:
+    com:
+      banyechan:
+        autocreatedatabase:
+          mapper: debug
